@@ -23,6 +23,12 @@ We have been using Parsec, a screen sharing program, to play online "locally" wi
 #include <json.hpp>
 #include <fstream>
 
+//FMOD
+/*
+#include "fmod_studio.hpp"
+#include "fmod_errors.h"
+*/
+
 #include <GLM/glm.hpp>
 #include <GLM/gtc/matrix_transform.hpp>
 #include <GLM/gtc/type_ptr.hpp>
@@ -58,6 +64,13 @@ We have been using Parsec, a screen sharing program, to play online "locally" wi
 #include "Graphics/TextureCubeMap.h"
 #include "Graphics/TextureCubeMapData.h"
 #include "Utilities/Util.h"
+
+//FMOD
+/*
+#include "Sound/AudioEngine.cpp"
+#include "Sound/AudioEngine.h"
+#include "Sound/Game.cpp"
+*/
 
 #define LOG_GL_NOTIFICATIONS
 #define NUM_TREES 25
@@ -246,6 +259,14 @@ void SetupShaderForFrame(const Shader::sptr& shader, const glm::mat4& view, cons
 	glm::vec3 camPos = glm::inverse(view) * glm::vec4(0,0,0,1);
 	shader->SetUniform("u_CamPos", camPos);
 }
+
+//FMOD
+/*
+extern void Init();
+extern void Update(float deltaTime);
+extern void Render();
+extern void Shutdown();
+*/
 
 int main() {
 	Logger::Init(); // We'll borrow the logger from the toolkit, but we need to initialize it
@@ -610,7 +631,7 @@ int main() {
 		{
 			VertexArrayObject::sptr vao = ObjLoader::LoadFromFile("models/Dunce.obj");
 			objDunce.emplace<RendererComponent>().SetMesh(vao).SetMaterial(materialDunce);
-			objDunce.get<Transform>().SetLocalPosition(0.0f, 0.0f, 0.9f);
+			objDunce.get<Transform>().SetLocalPosition(0.0f, 0.0f, 1.3f);
 			objDunce.get<Transform>().SetLocalRotation(90.0f, 0.0f, 0.0f);
 			BehaviourBinding::BindDisabled<SimpleMoveBehaviour>(objDunce);
 		}
@@ -619,7 +640,7 @@ int main() {
 		{
 			VertexArrayObject::sptr vao = ObjLoader::LoadFromFile("models/Duncet.obj");
 			objDuncet.emplace<RendererComponent>().SetMesh(vao).SetMaterial(materialDuncet);
-			objDuncet.get<Transform>().SetLocalPosition(2.0f, 0.0f, 0.8f);
+			objDuncet.get<Transform>().SetLocalPosition(2.0f, 0.0f, 1.2f);
 			objDuncet.get<Transform>().SetLocalRotation(90.0f, 0.0f, 0.0f);
 			BehaviourBinding::BindDisabled<SimpleMoveBehaviour>(objDuncet);
 		}
