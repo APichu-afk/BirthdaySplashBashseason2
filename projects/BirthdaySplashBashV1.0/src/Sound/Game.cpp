@@ -15,7 +15,7 @@ void Init()
 	AudioEngine& engine = AudioEngine::Instance();
 	engine.Init();
 
-	engine.LoadBank("Master");
+	engine.LoadBank("sound/Master");
 
 	engine.LoadBus("MusicBus", "{a5b53ded-d7b3-4e6b-a920-0b241ef6f268}");
 

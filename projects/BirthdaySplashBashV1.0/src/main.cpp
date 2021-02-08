@@ -24,10 +24,10 @@ We have been using Parsec, a screen sharing program, to play online "locally" wi
 #include <fstream>
 
 //FMOD
-/*
-#include "fmod_studio.hpp"
-#include "fmod_errors.h"
-*/
+
+//#include "fmod_studio.hpp"
+//#include "fmod_errors.h"
+
 
 #include <GLM/glm.hpp>
 #include <GLM/gtc/matrix_transform.hpp>
@@ -66,11 +66,8 @@ We have been using Parsec, a screen sharing program, to play online "locally" wi
 #include "Utilities/Util.h"
 
 //FMOD
-/*
-#include "Sound/AudioEngine.cpp"
-#include "Sound/AudioEngine.h"
-#include "Sound/Game.cpp"
-*/
+//#include "Sound/AudioEngine.h"
+//#include "Sound/Game.cpp"
 
 #define LOG_GL_NOTIFICATIONS
 #define NUM_TREES 25
@@ -261,12 +258,12 @@ void SetupShaderForFrame(const Shader::sptr& shader, const glm::mat4& view, cons
 }
 
 //FMOD
-/*
+
 extern void Init();
 extern void Update(float deltaTime);
 extern void Render();
 extern void Shutdown();
-*/
+
 
 int main() {
 	Logger::Init(); // We'll borrow the logger from the toolkit, but we need to initialize it
@@ -291,6 +288,8 @@ int main() {
 
 	// Enable texturing
 	glEnable(GL_TEXTURE_2D);
+
+	Init();
 
 	// Push another scope so most memory should be freed *before* we exit the app
 	{
@@ -851,6 +850,8 @@ int main() {
 				}
 			}
 
+			Update(time.DeltaTime);
+
 			// Clear the screen
 			glClearColor(0.08f, 0.17f, 0.31f, 1.0f);
 			glEnable(GL_DEPTH_TEST);
@@ -1116,6 +1117,8 @@ int main() {
 			glfwSwapBuffers(window);
 			time.LastFrame = time.CurrentFrame;
 		}
+
+		Shutdown();
 
 		// Nullify scene so that we can release references
 		Application::Instance().ActiveScene = nullptr;
