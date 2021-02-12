@@ -377,7 +377,7 @@ int main() {
 					shader->SetUniform("u_LightAttenuationQuadratic", lightQuadraticFalloff);
 				}
 			}
-
+			
 			/*Toggle buttons
 			No lighting
 			Ambient only

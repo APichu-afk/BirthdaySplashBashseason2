@@ -14,13 +14,15 @@ void Init()
 {
 	AudioEngine& engine = AudioEngine::Instance();
 	engine.Init();
-
+	
+	engine.LoadBank("sound/WinSoundBank");//("sound/Master")
 	engine.LoadBank("sound/Master");
-
-	engine.LoadBus("MusicBus", "{a5b53ded-d7b3-4e6b-a920-0b241ef6f268}");
+	engine.LoadBank("sound/Master.strings");//ye
+	
+	engine.LoadBus("WinBus", "bus:/WinBus");//("MusicBus", "{a5b53ded-d7b3-4e6b-a920-0b241ef6f268}")
 
 	//play a music event
-	AudioEvent& music = engine.CreateEvent("music", "{b56cb9d2-1d47-4099-b80e-7d257b99a823}");
+	AudioEvent& music = engine.CreateEvent("music", "event:/WinSound");//("music", "{b56cb9d2-1d47-4099-b80e-7d257b99a823}")
 
 	music.Play();
 
@@ -33,11 +35,11 @@ void Update(float deltaTime)
 {
 
 	gameTime += deltaTime;
-
+	
 	AudioEngine& engine = AudioEngine::Instance();
 
 	//get ref to bus
-	AudioBus& musicBus = engine.GetBus("MusicBus");
+	AudioBus& musicBus = engine.GetBus("WinBus");
 
 	//get ref to music
 	AudioEvent& music = engine.GetEvent("music");
@@ -50,16 +52,16 @@ void Update(float deltaTime)
 	
 	
 	// After 5 seconds go underwater
-	if (gameTime > 4.0f)
-	{
-		music.SetParameter("Underwater", 1.0f);
-		musicBus.SetPaused(true);
-	}
-	if (gameTime > 6.0f)
-	{
-		engine.SetGlobalParameter("Timewarp", 0.0f);
-		musicBus.SetPaused(false);
-	}
+	//if (gameTime > 4.0f)
+	//{
+	//	music.SetParameter("Underwater", 1.0f);
+	//	musicBus.SetPaused(true);
+	//}
+	//if (gameTime > 6.0f)
+	//{
+	//	engine.SetGlobalParameter("Timewarp", 0.0f);
+	//	musicBus.SetPaused(false);
+	//}
 
 
 
