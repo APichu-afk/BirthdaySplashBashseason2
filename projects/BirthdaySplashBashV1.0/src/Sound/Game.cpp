@@ -3,6 +3,7 @@
 //------------------------------------------------------------------------
 
 #include "AudioEngine.h"
+#include "Gameplay/Application.h"
 
 float gameTime;
 
@@ -31,9 +32,10 @@ void Init()
 	AudioEvent& music1 = engine.CreateEvent("music1", "event:/ReloadSound");
 	AudioEvent& music2 = engine.CreateEvent("music2", "event:/OnHitSound");
 	AudioEvent& music3 = engine.CreateEvent("music3", "event:/BackgroundSound");
-	music.Play();
-	music1.Play();
-	music2.Play();
+	//move to update for button press
+	//music.Play();
+	//music1.Play();
+	//music2.Play();
 	music3.Play();
 
 }
@@ -43,7 +45,7 @@ void Init()
 //------------------------------------------------------------------------
 void Update(float deltaTime)
 {
-
+	GLFWwindow* window = Application::Instance().Window;
 	gameTime += deltaTime;
 	
 	AudioEngine& engine = AudioEngine::Instance();
@@ -79,7 +81,25 @@ void Update(float deltaTime)
 	//	musicBus.SetPaused(false);
 	//}
 
+	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+	{
+		//music3 swap between fast and slow
+	}
 
+	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
+	{
+		music.Play();
+	}
+	
+	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
+	{
+		music1.Play();
+	}
+	
+	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
+	{
+		music2.Play();
+	}
 
 
 	engine.Update();
