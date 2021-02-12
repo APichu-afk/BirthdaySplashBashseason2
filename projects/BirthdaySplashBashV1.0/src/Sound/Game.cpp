@@ -16,15 +16,25 @@ void Init()
 	engine.Init();
 	
 	engine.LoadBank("sound/WinSoundBank");//("sound/Master")
+	engine.LoadBank("sound/ReloadBank");
+	engine.LoadBank("sound/OnHitBank");
+	engine.LoadBank("sound/BackgroundBank");
 	engine.LoadBank("sound/Master");
-	engine.LoadBank("sound/Master.strings");//ye
+	engine.LoadBank("sound/Master.strings");
 	
 	engine.LoadBus("WinBus", "bus:/WinBus");//("MusicBus", "{a5b53ded-d7b3-4e6b-a920-0b241ef6f268}")
-
+	engine.LoadBus("ReloadBus", "bus:/ReloadBus");
+	engine.LoadBus("HitBus", "bus:/HitBus");
+	engine.LoadBus("BackgroundBus", "bus:/BackgroundBus");
 	//play a music event
 	AudioEvent& music = engine.CreateEvent("music", "event:/WinSound");//("music", "{b56cb9d2-1d47-4099-b80e-7d257b99a823}")
-
+	AudioEvent& music1 = engine.CreateEvent("music1", "event:/ReloadSound");
+	AudioEvent& music2 = engine.CreateEvent("music2", "event:/OnHitSound");
+	AudioEvent& music3 = engine.CreateEvent("music3", "event:/BackgroundSound");
 	music.Play();
+	music1.Play();
+	music2.Play();
+	music3.Play();
 
 }
 
@@ -40,9 +50,15 @@ void Update(float deltaTime)
 
 	//get ref to bus
 	AudioBus& musicBus = engine.GetBus("WinBus");
+	AudioBus& musicBus1 = engine.GetBus("ReloadBus");
+	AudioBus& musicBus2 = engine.GetBus("HitBus");
+	AudioBus& musicBus3 = engine.GetBus("BackgroundBus");
 
 	//get ref to music
 	AudioEvent& music = engine.GetEvent("music");
+	AudioEvent& music1 = engine.GetEvent("music1");
+	AudioEvent& music2 = engine.GetEvent("music2");
+	AudioEvent& music3 = engine.GetEvent("music3");
 
 
 	//get ref to listener
