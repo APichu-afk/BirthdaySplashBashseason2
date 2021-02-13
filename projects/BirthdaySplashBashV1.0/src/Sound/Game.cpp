@@ -32,6 +32,9 @@ void Init()
 	AudioEvent& music1 = engine.CreateEvent("music1", "event:/ReloadSound");
 	AudioEvent& music2 = engine.CreateEvent("music2", "event:/OnHitSound");
 	AudioEvent& music3 = engine.CreateEvent("music3", "event:/BackgroundSound");
+
+	
+
 	//move to update for button press
 	//music.Play();
 	//music1.Play();
@@ -62,6 +65,7 @@ void Update(float deltaTime)
 	AudioEvent& music2 = engine.GetEvent("music2");
 	AudioEvent& music3 = engine.GetEvent("music3");
 
+	
 
 	//get ref to listener
 	AudioListener& listener = engine.GetListener();
@@ -84,6 +88,13 @@ void Update(float deltaTime)
 	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
 	{
 		//music3 swap between fast and slow
+		music3.SetParameter("GoToLoop", '0');
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+	{
+		//music3 swap between fast and slow
+		music3.SetParameter("GoToLoop", '1');
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
